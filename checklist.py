@@ -8,7 +8,7 @@
 # declare variable
 # can also be written as checklist = []
 
-checklist = list() # creates empty list object/puts it in memory
+checklist = [] # creates empty list object/puts it in memory
 # checklist.append("Blue") runs code within that object
 # print(checklist) prints entire list to the console
 # checklist.append("Orange") runs the same append code 
@@ -37,14 +37,14 @@ def update(index, item):
 
 # destroy
 def destroy(index):
-    checklist.pop(index)
+    checklist.pop(index) # pop removes last item in list
     # destroy code here
 
 # list item
 # loop over every item in the checklist
 def list_all_items():
     index = 0
-    for list_item in checklist:
+    for list_item in checklist: # do something
         print("{} {}".format(index, list_item))
         index += 1
 
@@ -64,16 +64,36 @@ def user_input(prompt):
 def select(function_code):
     # create item
     if function_code == "C":
-        input_item = user_input("Input Item: ")
+        input_item = user_input("Item you want to add: ")
         create(input_item)
     # read item
     elif function_code == "R":
         item_index = user_input("Index Number?")
-        read(item_index) # item_index must exist or program will crash
+        if len(checklist) > int(item_index):
+            read(int(item_index)) # item_index must exist or program will crash
+        else:
+            print("Sorry index doesn't exist. Please innput again: ")
+    # destroy
+    # removes item in list
+    elif function_code == "D":
+        item_index = user_input("Which index would you like to delete: ")
+        if len(checklist) > int(item_index):
+            destroy(int(item_index))
+        else:
+            print("Sorry index doesn't exist. Please innput again: ")
+    # update items from index
+    elif function_code == "U":
+        item_index = user_input("Which index would you like to update: ")
+        if len(checklist) > int(item_index):
+            item_index = user_input("Input update: ")
+            update(int(item_index))
+        else:
+            print("Sorry index does not exist. Please select again: ")
+        
     # print items
-    elif function_code == "P":
+    elif function_code == "p":
         list_all_items()
-    elif function_code == "Q":
+    elif function_code == "q":
         return False # where we want to stop the loop
     # catch all
     else:
@@ -82,25 +102,33 @@ def select(function_code):
     
 # test
 def test():
-    create("purple sox")
-    create("red cloak")
+    create("violet hat")
+    create("blue sweater")
+    create("indigo shirt")
+    create("green jeans")
+    create("yellow jacket")
+    create("orange shorts")
+    create("red socks")
+   
 
-    print(read(0))
-    print(read(1))
-    update(0, "purple socks")
-    destroy(1)
-    print(read(0))
-    
-    list_all_items()
+
+    #print(read(0))
+    # print(read(1))
+    # update(0, "purple socks")
+    # destroy(1)
+    # print(read(0))
+    # list_all_items() // keeps running
+
+test()
 
 # while loop
 running = True
 while running:
     selection = user_input(
-        "Press C to add to list, R to read from list, and P to display list: " )
+        "Press C to add to list, R to read from list, and P to display list, U to update list, D to delete an item from list: ")
     running = select(selection)
 
-test()
+
 
 
     

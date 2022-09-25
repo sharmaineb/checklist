@@ -142,7 +142,7 @@ test()
 running = True
 while running:
     selection = user_input(
-        "Press C to add to list, R to read from list, and P to display list, U to update list, D to delete an item from list: ")
+        "Press C to add to list, R to read from list, and P to display list, U to update list, D to delete an item from list, CM to place a checkmark on index, UC to remove checkmark from index: ")
     running = select(selection)
 
 

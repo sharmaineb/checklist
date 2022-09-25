@@ -53,11 +53,15 @@ def mark_completed(index):
     item = checklist[index] # add code here that marks an item as completed 
     update(index, "√" + item)
 
+def unmark_completed(index):
+    checklist.pop("√")
+    
+
 # user_input
 def user_input(prompt):
     # the input function will display a message in the terminal
     # and wait for user input
-    user_input = input(prompt)
+    user_input = input(prompt).lower().upper()
     return user_input
 
 # select
@@ -81,6 +85,20 @@ def select(function_code):
             destroy(int(item_index))
         else:
             print("Sorry index doesn't exist. Please innput again: ")
+    # place checkmark
+    elif function_code == "CM":
+        item_index = user_input("Which index would you like to checkmark: ")
+        if len(checklist) > int(item_index):
+            mark_completed(int(item_index))
+        else:
+            print("Index not found. Please input again: ")
+    # un-check checkmark
+    elif function_code == "UC":
+        item_index = user_input("Which index would you like to un-checkmark: ")
+        if len(checklist) < int(item_index):
+            unmark_completed(int(item_index))
+        else:
+            print("Index not found. Please input again: ")
     # update items from index
     elif function_code == "U":
         item_index = user_input("Which index would you like to update: ")
@@ -89,11 +107,10 @@ def select(function_code):
             update(int(item_index))
         else:
             print("Sorry index does not exist. Please select again: ")
-        
-    # print items
-    elif function_code == "p":
+     # print items
+    elif function_code == "P":
         list_all_items()
-    elif function_code == "q":
+    elif function_code == "Q":
         return False # where we want to stop the loop
     # catch all
     else:

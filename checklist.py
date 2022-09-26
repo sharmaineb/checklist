@@ -6,7 +6,7 @@
 
 # assign items to list
 # declare variable
-# can also be written as checklist = []
+# can also be written as checklist = list()
 
 checklist = [] # creates empty list object/puts it in memory
 # checklist.append("Blue") runs code within that object
@@ -53,8 +53,8 @@ def mark_completed(index):
     item = checklist[index] # add code here that marks an item as completed 
     update(index, "√" + item)
 
-def unmark_completed(index):
-    checklist.pop("√")
+# def unmark_completed(index):
+    # checklist.pop("√") // ask dani for help
     
 
 # user_input
@@ -93,12 +93,12 @@ def select(function_code):
         else:
             print("Index not found. Please input again: ")
     # un-check checkmark
-    elif function_code == "UC":
-        item_index = user_input("Which index would you like to un-checkmark: ")
-        if len(checklist) < int(item_index):
-            unmark_completed(int(item_index))
-        else:
-            print("Index not found. Please input again: ")
+    # elif function_code == "UC":
+        # item_index = user_input("Which index would you like to un-checkmark: ")
+        # if len(checklist) < int(item_index):
+            # unmark_completed(int(item_index))
+        # else:
+            # print("Index not found. Please input again: ") // ask dani for help
     # update items from index
     elif function_code == "U":
         item_index = user_input("Which index would you like to update: ")
